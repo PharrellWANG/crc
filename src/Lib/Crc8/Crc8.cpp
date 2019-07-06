@@ -130,3 +130,53 @@ uint8_t Crc8General::getCRC8() {
     }
     return crc;
 }
+
+void Crc8Fast::xInitTable() {
+    for (int i = 0; i < 256; i++) {
+        uint8_t crc = i;
+        for (uint32_t j = 8; j > 0; j--) {
+            // check if the MSB is 1
+            if (crc & 0x80u) {
+                crc <<= 1u;
+                crc ^= m_truncPoly;
+            } else {
+                crc <<= 1u;
+            }
+        }
+        m_table[i] = crc;
+    }
+}
+
+/*!
+ * This is the init table method in VTM4.0.
+ *
+ * */
+void Crc8Fast2::xInitTable() {
+    // todo: compare it with the init table method above.
+    const uint32_t highBit = 1u << (m_bits - 1);
+    const uint32_t byteHighBit = 1u << (8u - 1u);  // pha: 128, 10,000,000
+
+    for (uint32_t value = 0; value < 256; value++)
+    {
+        uint32_t remainder = 0;
+        for (unsigned char mask = byteHighBit; mask != 0; mask >>= 1u)
+        {
+            if (value & mask)
+            {
+                remainder ^= highBit;
+            }
+
+            if (remainder & highBit)
+            {
+                remainder <<= 1u;
+                remainder ^= m_truncPoly;
+            }
+            else
+            {
+                remainder <<= 1u;
+            }
+        }
+
+        m_table[value] = remainder;
+    }
+}
