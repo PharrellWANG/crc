@@ -49,4 +49,9 @@ So just make sure you are in the ``build/`` dir, then
 ```shell
 cmake .. && cmake --build . && ctest
 ```
+## Lib
+
+``Lib/Crc8`` is a naive implementation calculating the checksum bit by bit. 
+It is too slow for real world application where the message is typically much 
+larger than just a few bits.
 
