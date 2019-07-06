@@ -55,3 +55,7 @@ cmake .. && cmake --build . && ctest
 It is too slow for real world application where the message is typically much 
 larger than just a few bits.
 
+## References
+
+1. [A PAINLESS GUIDE TO CRC ERROR DETECTION ALGORITHMS](http://www.ross.net/crc/download/crc_v3.txt)
+2. [Understanding CRC](http://www.sunshine2k.de/articles/coding/crc/understanding_crc.html)
