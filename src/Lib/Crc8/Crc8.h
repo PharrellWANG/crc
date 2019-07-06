@@ -41,7 +41,8 @@ public:
 };
 
 /*!
- * The CRC8 algorithm capable of handling multiple-byte input data
+ * The CRC8 algorithm capable of handling multiple-byte input data.
+ * Still inefficient because it works bit by bit.
  *
  * */
 class Crc8General {
@@ -50,7 +51,6 @@ private:
     uint32_t m_len; // msg len
     uint8_t m_poly;
 public:
-    //uint32_t msg = 0b0000000100000010,
 
     explicit Crc8General(const uint8_t *arr, uint32_t len = 2, uint8_t poly = 0x1D){
         m_len = len;

@@ -37,7 +37,7 @@ protected:
 
     // Objects declared here can be used by all tests in the test case for Decimal2Any.
     Crc8 c8;
-    Crc8General c8g{tmpArr};
+//    Crc8General c8g{tmpArr};
 };
 
 // Test case must be called the class above
@@ -48,7 +48,10 @@ TEST_F(Crc8Test, yetAnotherCrc8Test) {
     auto res = c8.getCRC8();
     auto bRes = Crc8::decimal2binary(res, width);
     EXPECT_EQ("0b00001111", bRes);
+}
 
+TEST(Crc8GeneralTest, yetAnotherCrc8GenralTest){
+    Crc8General c8g{tmpArr};
     auto widthG = c8g.getWidth();  // checksum width in bits
     auto resG = c8g.getCRC8();
     auto bResG = Crc8::decimal2binary(resG, widthG);
