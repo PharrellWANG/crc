@@ -51,9 +51,9 @@ cmake .. && cmake --build . && ctest
 ```
 ## Lib
 
-``Lib/Crc8`` is a naive implementation calculating the checksum bit by bit. 
-It is too slow for real world application where the message is typically much 
-larger than just a few bits.
+``class Crc8{...}`` in ``Lib/Crc8/Crc8.h`` is a naive implementation calculating the 
+checksum bit by bit for one-byte input data. It is too slow for real world application 
+where the message is typically much larger than just a few bits.
 
 ## References
 
