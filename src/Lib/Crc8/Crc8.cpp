@@ -14,8 +14,8 @@ uint8_t Crc8::getCRC8(){
 
     // shift msg into the register
     auto crc = m_msg;
-
-    for(uint8_t i = 8;i>0;i--){
+    auto w = getWidth(); // here w must be 8, we ensure this in ``TestCrc8.cpp``.
+    for(uint32_t i = w;i>0;i--){
         // check if the MSB is 1
         if(crc&0x80u){  // append ``u`` to the end to get rid of the warning of ``Use of a signed integer operand with a binary bitwise operator``
             crc<<=1u;

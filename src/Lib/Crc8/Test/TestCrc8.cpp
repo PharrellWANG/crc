@@ -41,7 +41,7 @@ protected:
 // Also note: use TEST_F instead of TEST to access the test fixture (from google test primer)
 TEST_F(Crc8Test, yetAnotherCrc8Test) {
     auto width = c8.getWidth();  // checksum width in bits
-
+    EXPECT_EQ(8, width);  // crc8 algorithm here can only be used on single-byte msg.
     auto res = c8.getCRC8();
     auto bRes = Crc8::decimal2binary(res, width);
     EXPECT_EQ("0b00001111", bRes);
