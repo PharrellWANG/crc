@@ -148,6 +148,24 @@ void Crc8Fast1::xInitTable() {
     }
 }
 
+Crc8Fast1::Crc8Fast1(const uint8_t *arr, uint32_t numBits, uint32_t poly, uint32_t theLen)
+        : Crc8FastBase(arr, numBits, poly, theLen) {
+    xInitTable();
+}
+
+uint32_t* Crc8Fast1::getTable() { return m_table; }
+
+uint8_t Crc8Fast1::getCRC8() {
+    uint8_t crc = 0;
+    for (uint32_t j = 0; j < m_len; j++) {
+        /* XOR-in next input byte */
+        crc ^= m_msg.at(j);
+        /* get current CRC value = remainder */
+        crc = m_table[crc];
+    }
+    return crc;
+}
+
 /*!
  * This is the init table method in VTM4.0.
  * Except that the ``remainder`` has been changed from uint32_t to uint8_t.
@@ -157,27 +175,39 @@ void Crc8Fast2::xInitTable() {
     const uint32_t highBit = 1u << (m_bits - 1);
     const uint32_t byteHighBit = 1u << (8u - 1u);  // pha: 128, 10,000,000
 
-    for (uint32_t value = 0; value < 256; value++)
-    {
+    for (uint32_t value = 0; value < 256; value++) {
         uint8_t remainder = 0;
-        for (unsigned char mask = byteHighBit; mask != 0; mask >>= 1u)
-        {
-            if (value & mask)
-            {
+        for (unsigned char mask = byteHighBit; mask != 0; mask >>= 1u) {
+            if (value & mask) {
                 remainder ^= highBit;
             }
 
-            if (remainder & highBit)
-            {
+            if (remainder & highBit) {
                 remainder <<= 1u;
                 remainder ^= m_truncPoly;
-            }
-            else
-            {
+            } else {
                 remainder <<= 1u;
             }
         }
 
         m_table[value] = remainder;
     }
+}
+
+Crc8Fast2::Crc8Fast2(const uint8_t *arr, uint32_t numBits, uint32_t poly, uint32_t theLen)
+        : Crc8FastBase(arr, numBits, poly, theLen) {
+    xInitTable();
+}
+
+uint32_t* Crc8Fast2::getTable() { return m_table; }
+
+uint8_t Crc8Fast2::getCRC8() {
+    uint8_t crc = 0;
+    for (uint32_t j = 0; j < m_len; j++) {
+        /* XOR-in next input byte */
+        crc ^= m_msg.at(j);
+        /* get current CRC value = remainder */
+        crc = m_table[crc];
+    }
+    return crc;
 }

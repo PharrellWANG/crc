@@ -76,7 +76,7 @@ class Crc8FastBase {
 protected:
     uint32_t m_truncPoly;
     std::vector<uint8_t> m_msg;
-    uint32_t m_len; // len of msg
+    uint32_t m_len; // len of msg in bytes
     uint32_t m_bits;  // num of bits of the poly
 
     virtual void xInitTable() = 0;
@@ -91,6 +91,19 @@ public:
             m_msg.push_back(arr[i]);
     };
 
+    // Explain this destructor:
+    // 1. ``default`` keyword: It means that you want to use the compiler-generated version of
+    //                          that function, so you don't need to specify a body.
+    // 2. ``virtual`` keyword: Whenever the class has at least one virtual function,
+    //                          you should declare a destructor virtual.
+    virtual ~Crc8FastBase() = default;
+
+    // interfaces
+    virtual uint32_t *getTable() = 0;
+    virtual uint8_t getCRC8() = 0;
+
+    uint32_t getWidth(){return m_bits;}
+
 };
 
 class Crc8Fast1 : public Crc8FastBase {
@@ -100,12 +113,11 @@ private:
     void xInitTable() override;
 
 public:
-    explicit Crc8Fast1(const uint8_t *arr, uint32_t numBits = 8, uint32_t poly = 0x1D, uint32_t theLen = 2)
-            : Crc8FastBase(arr, numBits, poly, theLen) {
-        xInitTable();
-    }
+    explicit Crc8Fast1(const uint8_t *arr, uint32_t numBits = 8, uint32_t poly = 0x1D, uint32_t theLen = 2);
+    ~Crc8Fast1() override = default;
 
-    uint32_t *getTable() { return m_table; }
+    uint32_t *getTable() override;
+    uint8_t getCRC8() override;
 
 };
 
@@ -116,12 +128,12 @@ private:
     void xInitTable() override;
 
 public:
-    explicit Crc8Fast2(const uint8_t *arr, uint32_t numBits = 8, uint32_t poly = 0x1D, uint32_t theLen = 2)
-            : Crc8FastBase(arr, numBits, poly, theLen) {
-        xInitTable();
-    }
+    explicit Crc8Fast2(const uint8_t *arr, uint32_t numBits = 8, uint32_t poly = 0x1D, uint32_t theLen = 2);
+    ~Crc8Fast2() override = default;
 
-    uint32_t *getTable() { return m_table; }
+    uint32_t *getTable() override;
+    uint8_t getCRC8() override;
+
 };
 
 #endif //CRC_CRC8_H

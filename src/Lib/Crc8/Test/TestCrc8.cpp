@@ -63,4 +63,10 @@ TEST(Crc8FastTest, initTable){
     Crc8Fast2 c8f2{tmpArr};
     for(int i=0;i<256;i++)
         EXPECT_EQ(c8f1.getTable()[i], c8f2.getTable()[i]);
+    auto res1 = c8f1.getCRC8();
+    auto res2 = c8f1.getCRC8();
+    auto bRes1 = Crc8::decimal2binary(res1, c8f1.getWidth());
+    auto bRes2 = Crc8::decimal2binary(res2, c8f2.getWidth());
+    EXPECT_EQ("0b01110110", bRes1);
+    EXPECT_EQ("0b01110110", bRes2);
 }
