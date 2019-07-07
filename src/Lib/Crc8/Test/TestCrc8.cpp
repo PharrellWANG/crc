@@ -57,3 +57,10 @@ TEST(Crc8GeneralTest, yetAnotherCrc8GenralTest){
     auto bResG = Crc8::decimal2binary(resG, widthG);
     EXPECT_EQ("0b01110110", bResG);
 }
+
+TEST(Crc8FastTest, initTable){
+    Crc8Fast1 c8f1{tmpArr};
+    Crc8Fast2 c8f2{tmpArr};
+    for(int i=0;i<256;i++)
+        EXPECT_EQ(c8f1.getTable()[i], c8f2.getTable()[i]);
+}

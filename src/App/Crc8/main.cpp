@@ -15,9 +15,9 @@ int main(){
 //
 //    std::cout << bRes << std::endl;
     uint8_t tmpArr[2] =  {0b00000001, 0b00000010};
-//    Crc8Fast c8f{tmpArr};
-//    for(int i=0;i<256;i++)
-//        std::cout << i << ": " << c8f.getTable()[i] << std::endl;
+    Crc8Fast1 c8f1{tmpArr};
+    for(int i=0;i<256;i++)
+        std::cout << i << ": " << c8f1.getTable()[i] << std::endl;
 
     Crc8Fast2 c8f2{tmpArr};
     for(int i=0;i<256;i++)
@@ -25,3 +25,18 @@ int main(){
 
     return 0;
 }
+
+//0: 0
+//1: 29
+//2: 58
+//3: 39
+//4: 116
+//5: 105
+//6: 78
+//7: 83
+//8: 232
+//9: 245
+//10: 210
+//11: 207
+//12: 156
+//13: 129

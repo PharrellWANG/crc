@@ -115,7 +115,8 @@ uint8_t Crc8General::getCRC8() {
     // shift msg into the register
     uint8_t crc = 0;
     for (uint32_t j = 0; j < m_len; j++) {
-        crc ^= m_msg[j];
+//        crc ^= m_msg.at(j);
+        crc ^= m_msg.at(j);
 //        std::cout << (int)m_msg[j] << std::endl;
         for (uint32_t i = 8; i > 0; i--) {
             // check if the MSB is 1
@@ -131,7 +132,7 @@ uint8_t Crc8General::getCRC8() {
     return crc;
 }
 
-void Crc8Fast::xInitTable() {
+void Crc8Fast1::xInitTable() {
     for (int i = 0; i < 256; i++) {
         uint8_t crc = i;
         for (uint32_t j = 8; j > 0; j--) {
@@ -149,7 +150,7 @@ void Crc8Fast::xInitTable() {
 
 /*!
  * This is the init table method in VTM4.0.
- *
+ * Except that the ``remainder`` has been changed from uint32_t to uint8_t.
  * */
 void Crc8Fast2::xInitTable() {
     // todo: compare it with the init table method above.
@@ -158,7 +159,7 @@ void Crc8Fast2::xInitTable() {
 
     for (uint32_t value = 0; value < 256; value++)
     {
-        uint32_t remainder = 0;
+        uint8_t remainder = 0;
         for (unsigned char mask = byteHighBit; mask != 0; mask >>= 1u)
         {
             if (value & mask)
