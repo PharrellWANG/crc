@@ -24,3 +24,5 @@ mkdir build && cd build && cmake .. && cmake --build . && ctest
 
 1. [A PAINLESS GUIDE TO CRC ERROR DETECTION ALGORITHMS](http://www.ross.net/crc/download/crc_v3.txt)
 2. [Understanding CRC](http://www.sunshine2k.de/articles/coding/crc/understanding_crc.html)
+4. [How is crc32 checksum calculated](https://stackoverflow.com/questions/2587766/how-is-a-crc32-checksum-calculated)
+   
