@@ -2,7 +2,7 @@ include_directories(
         ..
 )
 
-set( LIB_NAME Lib_crc8 )
+set( LIB_NAME Lib_crc32 )
 file( GLOB SRC_FILES "*.cpp")
 file( GLOB INC_FILES "*.h")
 ADD_LIBRARY(${LIB_NAME} ${SRC_FILES} ${INC_FILES})
