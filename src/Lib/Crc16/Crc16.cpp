@@ -77,7 +77,7 @@ void Crc16::xInitTable() {
      * */
     for (uint32_t dividend = 0; dividend < 256; dividend++) {
         uint16_t crc = 0;
-        crc ^= (unsigned) (dividend << 8u);
+        crc ^= static_cast<uint16_t>(dividend << 8u);
         for (uint32_t i = 8; i > 0; i--) {
             if (crc & 0x8000u) {
                 crc <<= 1u;
