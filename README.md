@@ -1,24 +1,18 @@
-# CRC (Cyclic Redundancy Check) Implementation in C++
+# CRC
 
-CRC (Cyclic Redundancy Check) algorithms in C++, covered by tests.
+CRC (Cyclic Redundancy Check) algorithms implemented in C++.
 
-## Test
+1. Bitwise, Bytewise-Non-Table, and Bytewise-Table-Driven algorithms for CRC-8, CRC-16 and CRC32.
+2. The CRC algorithm in ``VTM4.0`` has been extracted as ``CrcXVTM4`` under ``src/Lib`` directory.
+3. Each Lib is covered by test cases, including Lib ``CrcXVTM4``.
 
-To run tests,
-
+## Usage 
+Clone the project, from project root dir, run tests:
 ```bash
 mkdir build && cd build && cmake .. && cmake --build . && ctest
 ```
 
-## Lib
-
-1. ``Lib_crc8``
-
-2. ``Lib_crc16``
-
-3. ``Lib_crc32``
-
-4. ``Lib_crc_in_vtm``
+All tests should pass.
 
 ## References
 
