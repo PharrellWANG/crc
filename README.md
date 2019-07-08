@@ -11,7 +11,6 @@ Clone the project, from project root dir, run tests:
 ```bash
 mkdir build && cd build && cmake .. && cmake --build . && ctest
 ```
-
 All tests should pass.
 
 ## References
