@@ -27,6 +27,7 @@ public:
 
     /*!get checksum width in bits*/
     uint32_t getWidth() { return 8 * sizeof(m_poly); }
+    uint32_t getLen() { return sizeof(m_msg); }
 
     /*!
      * Get the CRC checksum
