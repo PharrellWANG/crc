@@ -3,7 +3,7 @@ project(crc)
 
 set(CMAKE_CXX_STANDARD 17)
 # ================================================
-# for adding google test
+# google test
 # ================================================
 # place binaries and libraries according to GNU standards
 include(GNUInstallDirs)
@@ -23,16 +23,11 @@ fetch_googletest(
 )
 
 enable_testing()
-# ========================================
 
-# ========================================
-# glob a list of sub dir, then add_subdirectories for each sub dir
 MACRO(SUBDIRLIST result glob_pattern)
     FILE(GLOB children RELATIVE ${CMAKE_CURRENT_LIST_DIR} ${glob_pattern})
-    #  message(STATUS "DEBUG: x=${children}")
     SET(dirlist "")
     FOREACH(child ${children})
-        #    message(STATUS "DEBUG: child=${child}")
         IF(IS_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/${child})
             LIST(APPEND dirlist ${child})
         ENDIF()
